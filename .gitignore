@@ -1,0 +1,9 @@
+# IDE files
+/.idea/
+
+/conf/
+
+/on_backup_started.sh
+/on_backup_finished.sh
+/on_s3_sync_finished.sh
+/on_logfile_created.sh
