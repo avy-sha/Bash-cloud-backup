@@ -3,10 +3,6 @@ bash-cloud-backup
 
 bash-cloud-backup is a bash script, which can be used to automate local and cloud backup in Linux/Unix machines.
 
-RELEASE 2.2.0 (3 Feb 2018)
-
-CHANGELOG https://github.com/pontikis/bash-cloud-backup/blob/master/CHANGELOG.md
-
 Features
 --------
 
@@ -26,7 +22,7 @@ Features
 
 Copyright
 ---------
-Christos Pontikis (http://www.pontikis.gr)
+Abhinav Sharma
 
 License
 -------
@@ -161,7 +157,6 @@ Setup using git (recommended)
 ### installation
 
     cd /path/to/scripts
-    git clone https://github.com/pontikis/bash-cloud-backup.git
 
 ### get updates
 
@@ -175,7 +170,7 @@ If you are interested on (deprecated) version 1
 ### installation
 
     cd /path/to/scripts
-    git clone https://github.com/pontikis/bash-cloud-backup.git
+    git clone repo
     cd /path/to/scripts/bash-cloud-backup
     git checkout -b version1 origin/version1
 
@@ -184,14 +179,6 @@ If you are interested on (deprecated) version 1
     cd /path/to/scripts/bash-cloud-backup
     git fetch
     git merge origin/version1
-
-
-Setup by download
------------------
-
-If ``git`` is not available, download the source:
-
-https://github.com/pontikis/bash-cloud-backup/archive/master.zip
 
 Configuration
 -------------
@@ -213,10 +200,6 @@ You may define your own ``global.conf`` and as many ``backup.conf`` you like. So
     cp conf.default/global.conf /etc/bash-cloud-backup/global.conf
     nano /etc/bash-cloud-backup/global.conf
 
-For instructions, see sample ``conf.default/global.conf`` 
-
-https://github.com/pontikis/bash-cloud-backup/blob/master/conf.default/global.conf
-
 **ATTENTION**: remember to configure properly ``global.conf`` after each update
 
 
@@ -225,9 +208,6 @@ https://github.com/pontikis/bash-cloud-backup/blob/master/conf.default/global.co
     cp conf.default/backup.conf /etc/bash-cloud-backup/backup.conf
     nano /etc/bash-cloud-backup/backup.conf
 
-For instructions, see sample ``conf.default/backup.conf`` 
-
-https://github.com/pontikis/bash-cloud-backup/blob/master/conf.default/backup.conf
 
 **ATTENTION**: remember to configure properly ``backup.conf`` after each update
 
