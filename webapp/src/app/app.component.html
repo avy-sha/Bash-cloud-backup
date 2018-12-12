@@ -1,0 +1,317 @@
+
+<div class="card-panel section z-depth-5 red lighten-5" style="text-align:center">
+  <h3>
+    Welcome to {{ title }}
+  </h3>
+  <img class="circle responsive-img" width="50" alt="Backup Logo" src="../assets/images.png">
+</div>
+<a (click)="click1()"><h2 class="card-panel hoverable section z-depth-5 red lighten-5">Let's get the Backup on track:</h2></a>
+<hr>
+<br>
+<div *ngIf="hidden" class="row red lighten-5 card-panel section z-depth-5">
+  <div class="container col s12">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+          <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+          <i class="material-icons prefix">backup</i>
+          <input placeholder="" id="root" type="text" [(ngModel)]="root" required name="root">
+          <label for="root">Root Directory for Backup</label>
+          </div>
+        </div>
+        <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+          <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+          <i class="material-icons prefix">account_circle</i>
+          <input placeholder="" id="hostName" type="text" [(ngModel)]="hostname" name="host">
+          <label for="hostName">Enter the Hostname (Optional)</label>
+          </div>
+        </div>
+        <div class="input-field col s6 m6 card-panel red lighten-3 z-depth-5">
+          <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+          <i class="material-icons prefix">assignment</i>
+          <input placeholder="" id="logFilePath" type="text" [(ngModel)]="logFilePath" name="logPath">
+          <label for="logFilePath">Enter the Path for Log File Creation</label>
+          </div>
+        </div>
+        <div class="input-field col s6 m6 card-panel red lighten-3 z-depth-5">
+          <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+          <i class="material-icons prefix">format_italic</i>
+          <input placeholder="" id="logFileName" type="text" [(ngModel)]="logFileName" name="logName">
+          <label for="logFileName">Enter the Log File Name</label>
+          </div>
+        </div>
+        <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+          <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+          <i class="material-icons prefix">folder</i>
+          <input placeholder="" id="tmpFolderPath" type="text" [(ngModel)]="tmpFolderPath" name="tmpPath">
+          <label for="tmpFolderPath">Enter the Path for tmp Folder</label>
+          </div>
+        </div>
+        <div class="input-field col s12 m4 card-panel red lighten-3 z-depth-5">
+          <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+          <p><i class="material-icons prefix">show_chart</i><label>Do you want the Log size in the Log File</label></p>
+          <p><label>
+            <input [disabled]="logSizeNo" type="checkbox" [(ngModel)]="logSizeYes" name="logSizeYes" (click)="onLogSizeYes()"/>
+            <span>Yes</span>
+          </label>
+          </p>
+          <p><label>
+            <input [disabled]="logSizeYes" type="checkbox" [(ngModel)]="logSizeNo" name="logSizeNo" (click)="onLogSizeNo()"/>
+            <span>No</span>
+          </label>
+          </p>
+          </div>
+        </div>
+        <div class="input-field col s12 m4 card-panel red lighten-3 z-depth-5">
+          <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+          <p><i class="material-icons prefix">show_chart</i><label>Do you want Error Reports</label></p>
+          <p><label>
+            <input [disabled]="eMailReportNo" type="checkbox" [(ngModel)]="eMailReportYes" name="eMailReportYes" (click)="oneMailReportYes()"/>
+            <span>Yes</span>
+          </label>
+          </p>
+          <p><label>
+            <input [disabled]="eMailReportYes" type="checkbox" [(ngModel)]="eMailReportNo" name="eMailReportNo" (click)="oneMailReportNo()"/>
+            <span>No</span>
+          </label>
+          </p>
+          </div>
+        </div>
+        <div class="input-field col s12 m4 card-panel red lighten-3 z-depth-5">
+          <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+          <p><i class="material-icons prefix">show_chart</i><label>Do you want the eMail Report summary disabled</label></p>
+          <p><label>
+            <input [disabled]="eMailSummaryNo" type="checkbox" [(ngModel)]="eMailSummaryYes" name="eMailSummaryYes" (click)="oneMailSummaryYes()"/>
+            <span>Yes</span>
+          </label>
+          </p>
+          <p><label>
+            <input [disabled]="eMailSummaryYes" type="checkbox" [(ngModel)]="eMailSummaryNo" name="eMailSummaryNo" (click)="oneMailSummaryNo()"/>
+            <span>No</span>
+          </label>
+          </p>
+          </div>
+        </div>
+        <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+          <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+          <p><i class="material-icons prefix">sort</i><label>Select the type of data to backup</label></p>
+          <p>
+            <label>
+            <input type="checkbox" (click)="onSelect1()" [(ngModel)]="fileBackup" name="fileBackup"/>
+            <span>Files</span>
+            </label>
+            <div *ngIf="fileBackup" class="input-field col s12 card-panel red lighten-3 z-depth-5">
+              <div *ngIf="onAdd1" class="input-field col s12 card-panel red lighten-3 z-depth-5">
+                <div *ngFor="let set of backupNameArray;" class="chip green">
+                  {{ set }}
+                  <i class="close material-icons" (click)="deleteFileSet(set)">close</i>
+                </div>
+              </div>
+              <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+                    <i class="material-icons prefix">backup</i>
+                    <input placeholder="" id="backupName" type="text" [(ngModel)]="backupName" name="backupName">
+                    <label for="backupName">Enter the Name for Backup</label>
+              </div>
+              <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+              <i class="material-icons prefix">backup</i>
+              <input placeholder="" id="backupDir" type="text" [(ngModel)]="backupDir" name="backupDir">
+              <label for="backupDir">Enter the Directory for Backup</label>
+              </div>
+                <a class="waves-effect waves-light btn-large green" (click)="onAddFileSet()"><i class="material-icons right">cloud</i>Add FileSet</a>
+            </div>
+          <p>
+            <label>
+            <input type="checkbox" (click)="onSelect2()" [(ngModel)]="mdbBackup" name="mdbBackup"/>
+            <span>MySQL Database</span>
+            </label>
+            <div *ngIf="mdbBackup" class="input-field col s12 card-panel red lighten-3 z-depth-5">
+              <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+              <i class="material-icons prefix">dns</i>
+              <input placeholder="" id="msqlUser" type="text" [(ngModel)]="msqlUser" required name="msqlUser">
+              <label for="msqlUser">MySQL Username</label>
+              </div>
+            </div>
+            <div *ngIf="mdbBackup" class="input-field col s12 card-panel red lighten-3 z-depth-5">
+              <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+              <i class="material-icons prefix">dns</i>
+              <input placeholder="" id="msqlPass" type="password" [(ngModel)]="msqlPass" name="msqlPass">
+              <label for="msqlPass">MySQL Password</label>
+              </div>
+            </div>
+            <div *ngIf="mdbBackup" class="input-field col s12 card-panel red lighten-3 z-depth-5">
+              <div *ngIf="onAdd2" class="input-field col s12 card-panel red lighten-3 z-depth-5">
+                <div *ngFor="let set of mbackupNameArray;" class="chip green">
+                  {{ set }}
+                  <i class="close material-icons" (click)="deleteMDB(set)">close</i>
+                </div>
+              </div>
+              <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+                <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+                  <i class="material-icons prefix">backup</i>
+                  <input placeholder="" id="mbackupName" type="text" [(ngModel)]="mbackupName" name="mbackupName">
+                  <label for="mbackupName">Enter the Name of Database for Backup</label>
+                </div>
+                <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+                  <i class="material-icons prefix">backup</i>
+                  <input placeholder="" id="mbackupDir" type="text" [(ngModel)]="mbackupDir" name="mbackupDir">
+                  <label for="mbackupDir">Enter the Directory of Database for Backup</label>
+                </div>
+                <a class="waves-effect waves-light btn-large green" (click)="onAddMDB()"><i class="material-icons right">cloud</i>Add MySQL Database</a>
+              </div>
+            </div>
+          <p>
+            <label>
+            <input type="checkbox" (click)="onSelect3()" [(ngModel)]="pdbBackup" name="pdbBackup"/>
+            <span>Postgresql Database</span>
+            </label>
+            <div *ngIf="pdbBackup" class="input-field col s12 card-panel red lighten-3 z-depth-5">
+              <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+              <i class="material-icons prefix">dns</i>
+              <input placeholder="" id="psqlUser" type="text" [(ngModel)]="psqlUser" name="psqlUser">
+              <label for="psqlUser">Postgresql Username</label>
+              </div>
+            </div>
+            <div *ngIf="pdbBackup" class="input-field col s12 card-panel red lighten-3 z-depth-5">
+              <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+              <i class="material-icons prefix">dns</i>
+              <input placeholder="" id="psqlPass" type="password" [(ngModel)]="psqlPass" name="psqlPass">
+              <label for="psqlPass">Postgresql Password</label>
+              </div>
+            </div>
+            <div *ngIf="pdbBackup" class="input-field col s12 card-panel red lighten-3 z-depth-5">
+              <div *ngIf="onAdd3" class="input-field col s12 card-panel red lighten-3 z-depth-5">
+                <div *ngFor="let set of pbackupNameArray;" class="chip green">
+                  {{ set }}
+                  <i class="close material-icons" (click)="deletePDB(set)">close</i>
+                </div>
+              </div>
+              <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+                <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+                  <i class="material-icons prefix">backup</i>
+                  <input placeholder="" id="pbackupName" type="text" [(ngModel)]="pbackupName" name="pbackupName">
+                  <label for="pbackupName">Enter the Name of Database for Backup</label>
+                </div>
+                <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+                  <i class="material-icons prefix">backup</i>
+                  <input placeholder="" id="pbackupDir" type="text" [(ngModel)]="pbackupDir" name="pbackupDir">
+                  <label for="pbackupDir">Enter the Directory of Database for Backup</label>
+                </div>
+                <a class="waves-effect waves-light btn-large green" (click)="onAddPDB()"><i class="material-icons right">cloud</i>Add Postgresql Database</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+          <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+          <p><i class="material-icons prefix">data_usage</i><label>Would you like to compress the data</label></p>
+          <p><label>
+            <input [disabled]="compressNo" type="checkbox" (click)="onSelect4()" [(ngModel)]="compress" name="compress"/>
+            <span>Yes</span>
+          </label>
+          <div *ngIf="compress" class="input-field col s12 card-panel red lighten-3 z-depth-5">
+            <p><label>
+              <input [disabled]="gzipSelection" type="checkbox" [(ngModel)]="sevenzipSelection" name="sevenzipSelection" (click)="onsevenzipSelection()"/>
+              <span>7zip</span>
+            </label>
+            </p>
+            <p><label>
+              <input [disabled]="sevenzipSelection" type="checkbox" [(ngModel)]="gzipSelection" name="gzipSelection" (click)="ongzipSelection()"/>
+              <span>gzip</span>
+            </label>
+            </p>
+            <div *ngIf="sevenzipSelection" class="input-field col s12 card-panel red lighten-3 z-depth-5">
+            <i class="material-icons prefix">dns</i>
+            <input placeholder="" id="compress" type="password" [(ngModel)]="compressPass" name="compressPass">
+            <label for="compress">Enter Password for the Compressed File (AES Encryption)</label>
+            </div>
+          </div>
+          <p><label>
+            <input [disabled]="compress" type="checkbox" [(ngModel)]="compressNo" name="compressNo" (click)="onCompressNo()"/>
+            <span>No</span>
+          </label>
+          </p>
+          </div>
+        </div>
+        <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+          <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+            <i class="material-icons prefix">clear_all</i>
+            <input placeholder="" id="rotation" type="text" [(ngModel)]="daysRotation" name="rotation">
+            <label for="rotation">Enter the Rotation Cycle for Backup</label>
+          </div>
+        </div>
+        <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+          <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+            <a (click)="advancedOptions()"><p><i class="material-icons prefix">dashboard</i><label>Advanced Options</label></p></a>
+          </div>
+          <div *ngIf="advancedOpt" class="input-field col s12 card-panel red lighten-3 z-depth-5">
+            <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+              <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+              <p><i class="material-icons prefix">show_chart</i><label>Do you want to Activate Constant Sync to the S3 Cloud</label></p>
+              <p><label>
+                <input [disabled]="s3SyncNo" type="checkbox" [(ngModel)]="s3SyncYes" (click)="onS3SyncYes()" name="s3SyncYes"/>
+                <span>Yes</span>
+              </label>
+              </p>
+              <p><label>
+                <input [disabled]="s3SyncYes" type="checkbox" [(ngModel)]="s3SyncNo" name="s3SyncNo" (click)="onS3SyncNo()"/>
+                <span>No</span>
+              </label>
+              </p>
+              </div>
+              <div class="input-field col s12 m6 card-panel red lighten-3 z-depth-5">
+                <p><i class="material-icons prefix">show_chart</i><label>Do you want to use AWS-CLI</label></p>
+                <p><label>
+                  <input [disabled]="awsSyncNo || s3cmdYes" type="checkbox" [(ngModel)]="awsSyncYes" name="awsSyncYes" (click)="onAWSSyncYes()"/>
+                  <span>Yes</span>
+                </label>
+                </p>
+                <p><label>
+                  <input [disabled]="awsSyncYes || s3cmdYes" type="checkbox" [(ngModel)]="awsSyncNo" name="awsyncNo"(click)="onAWSSyncNo()"/>
+                  <span>No</span>
+                </label>
+                </p>
+              </div>
+              <div class="input-field col s12 m6 card-panel red lighten-3 z-depth-5">
+                <p><i class="material-icons prefix">show_chart</i><label>Do you want to use S3-CMD</label></p>
+                <p><label>
+                  <input [disabled]="s3cmdNo || awsSyncYes" type="checkbox" [(ngModel)]="s3cmdYes" name="s3cmdYes" (click)="ons3cmdYes()"/>
+                  <span>Yes</span>
+                </label>
+                </p>
+                <p><label>
+                  <input [disabled]="s3cmdYes || awsSyncYes" type="checkbox" [(ngModel)]="s3cmdNo" name="s3cmdNo"(click)="ons3cmdNo()"/>
+                  <span>No</span>
+                </label>
+                </p>
+              </div>
+              <div class="input-field col s12 card-panel red lighten-3 z-depth-5">
+                <i class="material-icons prefix">show_chart</i>
+                <input placeholder="" id="bucketPath" type="text" [(ngModel)]="bucketPath" name="BucketPath">
+                <label for="bucketPath">Enter the Cloud Directory for Backup Data</label>
+              </div>
+              <div class="input-field col s12 m6 card-panel red lighten-3 z-depth-5">
+                <i class="material-icons prefix">show_chart</i>
+                <input placeholder="" id="download" type="text" [(ngModel)]="trickleDownload" name="download">
+                <label for="download">Enter the Limit for Download Speed (KB/s)</label>
+              </div>
+              <div class="input-field col s12 m6 card-panel red lighten-3 z-depth-5">
+                <i class="material-icons prefix">show_chart</i>
+                <input placeholder="" id="upload" type="text" [(ngModel)]="trickleUpload" name="upload">
+                <label for="upload">Enter the Limit for Upload Speed (KB/s)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn waves-effect waves-teal green" type="submit" name="submit" (click)="onSubmit()">Backup The Data
+          <i class="material-icons right">send</i>
+        </button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn waves-effect waves-teal red" type="submit" name="reset" (click)="onReset1()">Reset
+          <i class="material-icons right">block</i>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
