@@ -1,0 +1,37 @@
+<h6 class="card-panel hoverable section z-depth-5 blue lighten-5">Backup Data</h6>
+<h6 class="card-panel hoverable section z-depth-5 blue lighten-5">
+    <div class="input-field col s12 card-panel blue lighten-3 z-depth-5">
+        <div class="input-field col s12 card-panel blue lighten-3 z-depth-5">
+            <p>Resource Name:</p>
+            <input type="text" disabled [(ngModel)]="bucketName">
+        </div>
+    </div>
+</h6>
+
+<div class="row blue lighten-4 card-panel section z-depth-5">
+  <div class="container col s12">
+        <table *ngIf="getList" class="mat-table">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+            </tr>
+            <tr *ngFor="let name of list; let i = index">
+                <td>{{i + 1}}</td>
+                <td><a (click)="moveIn(name)" style="cursor: pointer">{{name}}</a></td>
+            </tr>
+            <tr *ngFor="let obj of downloadableObjects; let j = index">
+                <td>{{list.length + j + 1}}</td>
+                <td>{{obj}} &nbsp; &nbsp; &nbsp; &nbsp; <a (click)="downloadObject(obj)" style="cursor: pointer"> <i class="material-icons right">save_alt</i> </a></td>
+            </tr>
+        </table>
+  </div>
+    &nbsp;
+    &nbsp;
+    <button class="btn waves-effect waves-teal green" type="submit" name="reset" (click)="onGetData()">Get Backup Data Directories
+        <i class="material-icons right">arrow_downward</i>
+    </button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="btn waves-effect waves-teal red" type="submit" name="reset" (click)="onNavigate()">Back
+        <i class="material-icons right">arrow_left</i>
+    </button>
+</div>

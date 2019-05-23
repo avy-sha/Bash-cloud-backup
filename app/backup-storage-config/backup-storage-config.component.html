@@ -1,0 +1,54 @@
+<div class="row blue lighten-4 card-panel section z-depth-5">
+  <div class="input-field col s12 card-panel blue lighten-3 z-depth-5">
+          <p><i class="material-icons prefix">show_chart</i><label>Select The Storage Provider</label></p>
+          <p><label>
+          <input [disabled]="resourceTwoTrue" type="checkbox" name="resourceOneTrue" (click)="onResourceOneSelected()"/>
+          <span>S3</span>
+          </label>
+          </p>
+          <p><label>
+          <input [disabled]="resourceOneTrue" type="checkbox" name="resourceTwoTrue" (click)="onResourceTwoSelected()"/>
+        <span>Mozy</span>
+      </label>
+    </p>
+  </div>
+  <div *ngIf="resourceSelected" class="container col s12">
+    <div class="input-field col s12 card-panel blue lighten-3 z-depth-5">
+      <div class="input-field col s12 card-panel blue lighten-3 z-depth-5">
+        <i class="material-icons prefix">backup</i>
+        <input placeholder="" id="bucketName" type="text" [(ngModel)]="bucketName" required name="bucketName">
+        <label for="bucketName">Resource Name</label>
+      </div>
+    </div>
+    <div class="input-field col s12 card-panel blue lighten-3 z-depth-5">
+      <div class="input-field col s12 card-panel blue lighten-3 z-depth-5">
+        <i class="material-icons prefix">backup</i>
+        <input placeholder="" id="accessKeyID" type="text" [(ngModel)]="accessKeyID" required name="accessKeyID">
+        <label for="accessKeyID">Access Key ID</label>
+      </div>
+    </div>
+    <div class="input-field col s12 card-panel blue lighten-3 z-depth-5">
+      <div class="input-field col s12 card-panel blue lighten-3 z-depth-5">
+        <i class="material-icons prefix">backup</i>
+        <input placeholder="" id="secretAccessKey" type="text" [(ngModel)]="secretAccessKey" required name="secretAccessKey">
+        <label for="secretAccessKey">Secret Access Key</label>
+      </div>
+    </div>
+    <button class="btn waves-effect waves-teal green" type="submit" name="submit" (click)="onSubmit2()">Save Details
+      <i class="material-icons right">send</i>
+    </button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="btn waves-effect waves-teal blue" type="submit" name="reset" (click)="onReset2()">Reset
+      <i class="material-icons right">cancel_presentation</i>
+    </button>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="btn waves-effect waves-teal red" type="submit" name="reset" (click)="onDeleteDetails()">Delete Saved Details
+      <i class="material-icons right">block</i>
+    </button>
+  </div>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <br>
+    <button class="btn waves-effect waves-teal red" type="submit" name="reset" (click)="onNavigate()">Back
+      <i class="material-icons right">arrow_left</i>
+    </button>
+</div>
